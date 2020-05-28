@@ -15,6 +15,14 @@ let DirectivaModel = {
       <input type="checkbox" :value="movie" v-model="favoritesMovies" />
       {{movie}}
     </label>
+
+    <div v-if="favoritesMovies.length > 0">
+      <h2>Peliculas Favoritas</h2>
+      <ul>
+        <li v-for="movie in favoritesMovies">{{movie}}</li>
+      </ul>
+    </div>
+
    </div> 
   `,
   data() {
