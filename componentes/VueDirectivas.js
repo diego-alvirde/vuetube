@@ -11,6 +11,7 @@ Vue.component("directivas", {
     <directive-for></directive-for>
     <directive-on></directive-on>
     <directive-model></directive-model>
+    <directive-slot></directive-slot>
    </div> 
   `,
   data() {
@@ -31,5 +32,6 @@ Vue.component("directivas", {
     "directive-for": DirectivaFor,
     "directive-on": DirectivaOn,
     "directive-model": DirectivaModel,
+    "directive-slot": DirectivaSlot,
   },
 });
