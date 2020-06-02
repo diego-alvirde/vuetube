@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Curso de Vue</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
     <div id="app">
+      <p v-cloak>{{title}}</p>
       <hola-mundo></hola-mundo>
       <directivas></directivas>
     </div>
@@ -26,6 +32,11 @@
     <script>
       let app = new Vue({
         el: "#app",
+        data () {
+          return {
+            title: 'Directiva Vue JS v-cloak'
+          }
+        }
       });
     </script>
   </body>
