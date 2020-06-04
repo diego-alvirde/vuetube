@@ -1,16 +1,20 @@
 Vue.component('props-comp', {
     template: `
-        <div>
+        <div class="container">
             <h1>Peliculas Props</h1>
-            <MovieComp :ref="movie" v-for="(movie, key) in movies" 
-            :key="key" 
-            :id="movie.id" 
-            :title="movie.title" 
-            :synopsis="movie.synopsis" 
-            :cover="movie.cover"
-            :like="movie.like"
-            />
-            <MovieFav ref="movieFav" :show.sync="showFav"/>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="(movie, key) in movies" 
+                :key="key">
+                <MovieComp :ref="movie"  
+                :id="movie.id" 
+                :title="movie.title" 
+                :synopsis="movie.synopsis" 
+                :cover="movie.cover"
+                :like="movie.like"
+                />
+                <MovieFav ref="movieFav" :show.sync="showFav"/>
+                </div>
+            </div>            
         </div>
     `,
     data(){
@@ -50,7 +54,7 @@ Vue.component('props-comp', {
         console.log("mounted")
         console.log(this.$refs.movieFav.message)
         this.$refs.movieFav.message = "Hola desde el padre"
-        this.$refs.movieFav.showMessage()
+        //this.$refs.movieFav.showMessage()
     },
     beforeUpdate(){
         console.log("beforeUpdated")        

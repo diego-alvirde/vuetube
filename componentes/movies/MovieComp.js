@@ -26,12 +26,22 @@ let MovieComp = {
 
     },
     template: `
-        <div>
-            <img :src="cover" />
-            <h2>{{title}}</h2>
-            <p>{{synopsis}}</p>             
-            <button @click="toggleLike" v-text="like ? 'Favorita':'Agregar a Favoritos'"></button>
-            <hr>
+        <div class="card" :class="{}">                                    
+            <img :src="cover" class="card-img-top"/>
+            <div class="card-body">
+            <h2 class="card-title">{{title}}</h2>
+            <p class="card-text">{{synopsis}}</p>             
+            <button @click="toggleLike" :class="{
+                'btn btn-danger':like,
+                'btn btn-primary':!like
+            }">
+                <span v-text="like ? 'Favorita':'Agregar a Favoritos'"></span>
+                <i :class="{
+                    'fas fa-heart':like,
+                    'far fa-heart':!like
+                }"></i>
+            </button>
+            </div>                        
         </div>
     `,
     methods: {
@@ -39,12 +49,17 @@ let MovieComp = {
             let movie = this.$parent.movies.find(m => m.id == this.id)
             movie.like = !this.like
             this.$parent.showFav = !this.like          
-            this.$parent.sayHello()                          
+            //this.$parent.sayHello()                          
         }
     },
     data (){
         return {
             prueba:"Prueba"
+        }
+    },
+    computed: {
+        btnClass() {
+            return this.like ? 'btn btn-danger' : 'btn btn-primary'
         }
     }
 }
