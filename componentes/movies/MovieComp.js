@@ -35,12 +35,10 @@ let MovieComp = {
         </div>
     `,
     methods: {
-        toggleLike() {            
-            let data = {
-                id: this.id,
-                like: !this.like
-            }
-            this.$emit('toggleLike', data)
+        toggleLike() {                                    
+            let movie = this.$parent.movies.find(m => m.id == this.id)
+            movie.like = !this.like
+            this.$parent.showFav = !this.like                                    
         }
     }
 }

@@ -9,7 +9,7 @@ Vue.component('props-comp', {
             :synopsis="movie.synopsis" 
             :cover="movie.cover"
             :like="movie.like"
-            @toggleLike="onToggleLike"/>
+            />
             <MovieFav :show.sync="showFav"/>
         </div>
     `,
@@ -34,18 +34,7 @@ Vue.component('props-comp', {
             showFav:false
         }
     },
-    methods: {
-        onToggleLike(data){
-            let movieLike = this.movies.find(movie => movie.id == data.id)
-            movieLike.like = data.like
-            if(movieLike.like){
-                alert(`${movieLike.title} agregada a favoritos.`)
-                this.showFav = true                
-            }                        
-        },
-        onHideFav(show){
-            this.showFav = show
-        }
+    methods: {            
     },
     components: {
         MovieComp,
