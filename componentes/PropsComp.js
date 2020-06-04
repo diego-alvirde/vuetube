@@ -10,7 +10,7 @@ Vue.component('props-comp', {
             :cover="movie.cover"
             :like="movie.like"
             @toggleLike="onToggleLike"/>
-            <MovieFav v-if="showFav" />
+            <MovieFav v-if="showFav" @hideFav="onHideFav"/>
         </div>
     `,
     data(){
@@ -40,15 +40,34 @@ Vue.component('props-comp', {
             movieLike.like = data.like
             if(movieLike.like){
                 alert(`${movieLike.title} agregada a favoritos.`)
-                this.showFav = true
-            }else{
-                alert(`${movieLike.title} se quito de favoritos.`)
-                this.showFav = false
+                this.showFav = true                
             }                        
+        },
+        onHideFav(show){
+            this.showFav = show
         }
     },
     components: {
         MovieComp,
         MovieFav
     },    
+    beforeMount() {
+        console.log('beforeMount')
+    },
+    mounted(){
+        console.log("mounted")
+        
+    },
+    beforeUpdate(){
+        console.log("beforeUpdated")        
+    },
+    updated() {
+        console.log("updated")                                
+    },
+    beforeDestroy(){        
+        console.log("beforeDestroy")        
+    },
+    destroyed() {
+        console.log("destroyed")        
+    }
 })
