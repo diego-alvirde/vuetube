@@ -26,11 +26,11 @@ let MovieComp = {
 
     },
     template: `
-        <div class="card" :class="{}">                                    
+        <div :id="id | formatId" class="card" :class="{}">                                    
             <img :src="cover" class="card-img-top"/>
             <div class="card-body">
-            <h2 class="card-title">{{title}}</h2>
-            <p class="card-text">{{synopsis}}</p>             
+            <h2 class="card-title">{{title | uppercase | reverse}}</h2>
+            <p class="card-text">{{synopsis | reduce}}</p>             
             <button @click="toggleLike" :class="{
                 'btn btn-danger':like,
                 'btn btn-primary':!like
@@ -60,6 +60,20 @@ let MovieComp = {
     computed: {
         btnClass() {
             return this.like ? 'btn btn-danger' : 'btn btn-primary'
+        }
+    },
+    filters:{
+        formatId(value){
+            return `movieCard-${value}`
+        },
+        uppercase(value){
+            return value.toUpperCase()
+        },
+        reverse(value){
+            return value.split('').reverse().join('')
+        },
+        reduce(value){
+            return value.substring(0,39).concat("...")
         }
     }
 }
