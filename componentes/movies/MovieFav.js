@@ -1,33 +1,49 @@
 let MovieFav = {
+    props: {
+        show: {
+            type:Boolean,
+            required:true,
+            default(){
+                return false;
+            }
+        }
+    },
     template: `
-        <div class="movieFav-wrapper">
-            <div class="movieFav" :id="'fav-'+_uid">
+        <div v-show="show" class="movieFav-wrapper">
+            <div :id="'fav-'+_uid" class="movieFav">
                 
             </div>
         </div>
     `,
+    created(){
+        
+    },
     beforeMount() {
         console.log('beforeMount')
     },
     mounted(){
-        console.log("mounted")        
+        console.log("mounted")                
         let vm = this
         let $element = document.getElementById(`fav-${this._uid}`)
 
-        $element.addEventListener('animationend', function(){
-            vm.$emit('hideFav', false)
-        })
+        $element.addEventListener('animationend', function(){                        
+            vm.$emit('update:show', false)
+        })               
     },
     beforeUpdate(){
-        console.log("beforeUpdated")        
+        console.log("beforeUpdated")       
+        
     },
     updated() {
-        console.log("updated")                                
+        console.log("updated")                       
+                         
     },
     beforeDestroy(){        
-        console.log("beforeDestroy")        
+        console.log("beforeDestroy")              
+          
     },
     destroyed() {
         console.log("destroyed")        
-    }
+        
+    },    
 }

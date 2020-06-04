@@ -10,7 +10,7 @@ Vue.component('props-comp', {
             :cover="movie.cover"
             :like="movie.like"
             @toggleLike="onToggleLike"/>
-            <MovieFav v-if="showFav" @hideFav="onHideFav"/>
+            <MovieFav :show.sync="showFav"/>
         </div>
     `,
     data(){
