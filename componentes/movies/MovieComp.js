@@ -75,5 +75,10 @@ let MovieComp = {
         reduce(value){
             return value.substring(0,39).concat("...")
         }
+    },
+    watch:{
+        like(newVal, oldVal){
+            console.log(newVal, oldVal)
+        }
     }
 }

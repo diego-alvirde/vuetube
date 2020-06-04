@@ -1,6 +1,7 @@
 Vue.component('props-comp', {
     template: `
         <div class="container">
+            <h5>Bienvenido {{user}}</h5>
             <h1>Peliculas Props</h1>
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="(movie, key) in movies" 
@@ -14,11 +15,18 @@ Vue.component('props-comp', {
                 />
                 <MovieFav ref="movieFav" :show.sync="showFav"/>
                 </div>
-            </div>            
+            </div>      
+            <hr>
+            <label>Cambiar Nombre
+                <input :value="user" @change="setNewUser" class="form-control"/>      
+            </label>
+            {{oldUser}}
         </div>
     `,
     data(){
         return{
+            user:"Fermin Bejarano",
+            oldUser: null,
             movies: [
                 {
                     id: 1,
@@ -41,6 +49,9 @@ Vue.component('props-comp', {
     methods: {            
         sayHello(){
             alert("Hola")
+        },
+        setNewUser(event){
+            this.user = event.target.value
         }
     },
     components: {
@@ -67,5 +78,11 @@ Vue.component('props-comp', {
     },
     destroyed() {
         console.log("destroyed")        
+    },
+    watch: {
+        user(newValue,oldValue){
+            console.log(newValue,oldValue)
+            this.oldUser = oldValue
+        }
     }
 })
