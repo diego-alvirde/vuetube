@@ -8,8 +8,8 @@ Vue.component('props-comp', {
             :title="movie.title" 
             :synopsis="movie.synopsis" 
             :cover="movie.cover"
-            :like="movie.like"
-            @toggleLike="onToggleLike"/>
+            :like.sync="movie.like"
+            />
         </div>
     `,
     data(){
