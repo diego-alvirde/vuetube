@@ -30,7 +30,7 @@ let MovieComp = {
             <img :src="cover" />
             <h2>{{title}}</h2>
             <p>{{synopsis}}</p>             
-            <button @click="$emit('update:like', !like)" v-text="like ? 'Favorita':'Agregar a Favoritos'"></button>
+            <button @click="toggleLike" v-text="like ? 'Favorita':'Agregar a Favoritos'"></button>
             <hr>
         </div>
     `,
