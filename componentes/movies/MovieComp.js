@@ -29,7 +29,7 @@ let MovieComp = {
         <div :id="id | formatId" class="card" :class="{}">                                    
             <img :src="cover" class="card-img-top"/>
             <div class="card-body">
-            <h2 class="card-title">{{title | uppercase | reverse}}</h2>
+            <h5 class="card-title">{{title | uppercase}}</h5>
             <p class="card-text">{{synopsis | reduce}}</p>             
             <button @click="toggleLike" :class="{
                 'btn btn-danger':like,
@@ -73,7 +73,7 @@ let MovieComp = {
             return value.split('').reverse().join('')
         },
         reduce(value){
-            return value.substring(0,39).concat("...")
+            return value.substring(0,100).concat("...")
         }
     },
     watch:{

@@ -22,7 +22,7 @@ let MovieFav = {
         console.log('beforeMount')
     },
     mounted(){
-        console.log("mounted")                
+        console.log("mounted fav")                
         let vm = this
         let $element = document.getElementById(`fav-${this._uid}`)
 

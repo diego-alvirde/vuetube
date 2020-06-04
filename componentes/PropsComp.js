@@ -62,9 +62,9 @@ Vue.component('props-comp', {
         console.log('beforeMount')
     },
     mounted(){
-        console.log("mounted")
-        console.log(this.$refs.movieFav.message)
-        this.$refs.movieFav.message = "Hola desde el padre"
+        console.log("mounted xxx")
+        //console.log(this.$refs.movieFav.message)        
+        //this.$refs.movieFav.message = "Hola desde el padre"
         //this.$refs.movieFav.showMessage()
     },
     beforeUpdate(){
