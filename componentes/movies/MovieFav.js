@@ -46,4 +46,14 @@ let MovieFav = {
         console.log("destroyed")        
         
     },    
+    data (){
+        return {
+            message: "Hola soy el mensaje de MovieFav"
+        }
+    },
+    methods: {
+        showMessage(){
+            alert(this.message)
+        }
+    }
 }

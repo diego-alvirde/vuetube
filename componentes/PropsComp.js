@@ -2,7 +2,7 @@ Vue.component('props-comp', {
     template: `
         <div>
             <h1>Peliculas Props</h1>
-            <MovieComp v-for="(movie, key) in movies" 
+            <MovieComp :ref="movie" v-for="(movie, key) in movies" 
             :key="key" 
             :id="movie.id" 
             :title="movie.title" 
@@ -10,7 +10,7 @@ Vue.component('props-comp', {
             :cover="movie.cover"
             :like="movie.like"
             />
-            <MovieFav :show.sync="showFav"/>
+            <MovieFav ref="movieFav" :show.sync="showFav"/>
         </div>
     `,
     data(){
@@ -35,6 +35,9 @@ Vue.component('props-comp', {
         }
     },
     methods: {            
+        sayHello(){
+            alert("Hola")
+        }
     },
     components: {
         MovieComp,
@@ -45,7 +48,9 @@ Vue.component('props-comp', {
     },
     mounted(){
         console.log("mounted")
-        
+        console.log(this.$refs.movieFav.message)
+        this.$refs.movieFav.message = "Hola desde el padre"
+        this.$refs.movieFav.showMessage()
     },
     beforeUpdate(){
         console.log("beforeUpdated")        

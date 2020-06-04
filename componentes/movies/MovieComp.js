@@ -38,7 +38,13 @@ let MovieComp = {
         toggleLike() {                                    
             let movie = this.$parent.movies.find(m => m.id == this.id)
             movie.like = !this.like
-            this.$parent.showFav = !this.like                                    
+            this.$parent.showFav = !this.like          
+            this.$parent.sayHello()                          
+        }
+    },
+    data (){
+        return {
+            prueba:"Prueba"
         }
     }
 }
