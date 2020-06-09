@@ -14,10 +14,17 @@ Vue.component('movie-app', {
                 :synopsis="movie.overview" 
                 :cover="movie.poster_path"
                 :like="movie.like"
-                />
-                <MovieFav ref="movieFav" :show.sync="showFav"/>
+                />                
                 </div>
-            </div>                  
+            </div>
+            <div class="row">
+                    <button class="btn m-1" :class="{
+                        'btn-light': n != page,
+                        'btn-primary': n == page
+                    }" v-for="(n, index) in total_pages" :key="index">{{n}}</button>
+                </div>
+
+                <MovieFav ref="movieFav" :show.sync="showFav"/>                  
         </div>
     `,
     data(){
@@ -28,7 +35,9 @@ Vue.component('movie-app', {
             },
             oldUser: null,
             movies: [],
-            showFav:false
+            showFav:false,
+            page:1,
+            total_pages:null
         }
     },
     methods: {            
@@ -41,10 +50,11 @@ Vue.component('movie-app', {
         getPopulares(){
             let url = `${
                 BASE_URL
-              }discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&language=es`
+              }discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&page=${this.page}&language=es`
             fetch(url)
             .then(response => response.json())
-            .then(data => {            
+            .then(data => {         
+                this.total_pages = data.total_pages          
                 this.movies = data.results.map(m => {
                     m.poster_path = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${m.poster_path}`
                     m.like = false
@@ -64,6 +74,8 @@ Vue.component('movie-app', {
         //console.log(this.$refs.movieFav.message)
         //this.$refs.movieFav.message = "Hola desde el padre"
         //this.$refs.movieFav.showMessage()
+        let locationURL = new URL(window.location.href)
+        this.page = locationURL.searchParams.get('page')
         this.getPopulares()
     },
     beforeUpdate(){
