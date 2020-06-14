@@ -18,10 +18,13 @@ Vue.component('movie-app', {
                 </div>
             </div>
             <div class="row">
-                    <button class="btn m-1" :class="{
+                    <label class="btn m-1" :class="{
                         'btn-light': n != page,
                         'btn-primary': n == page
-                    }" v-for="(n, index) in total_pages" :key="index">{{n}}</button>
+                    }" v-for="(n, index) in total_pages" :key="index">
+                    {{n}}
+                    <input class="d-none" type="radio" :value="n" v-model="page"/>
+                    </label>
                 </div>
 
                 <MovieFav ref="movieFav" :show.sync="showFav"/>                  
@@ -40,7 +43,16 @@ Vue.component('movie-app', {
             total_pages:null
         }
     },
+    watch: {
+        page (){
+            this.getPopulares()
+        }
+    },
     methods: {            
+        cambia(valor){            
+            this.page = valor
+            this.getPopulares()
+        },
         sayHello(){
             alert("Hola")
         },
@@ -75,7 +87,7 @@ Vue.component('movie-app', {
         //this.$refs.movieFav.message = "Hola desde el padre"
         //this.$refs.movieFav.showMessage()
         let locationURL = new URL(window.location.href)
-        this.page = locationURL.searchParams.get('page')
+        this.page = locationURL.searchParams.get('page') || 1
         this.getPopulares()
     },
     beforeUpdate(){
