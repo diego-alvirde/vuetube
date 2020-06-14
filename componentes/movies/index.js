@@ -4,6 +4,7 @@ Vue.component('movie-app', {
     template: `
         <div class="container">
             <h5>Bienvenido {{user.name}} {{user.lastName}}</h5>
+            <SearchComponent v-model="searchMovies"></SearchComponent>
             <h1>Peliculas App</h1>
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-3" v-for="(movie, key) in movies" 
@@ -40,7 +41,8 @@ Vue.component('movie-app', {
             movies: [],
             showFav:false,
             page:1,
-            total_pages:null
+            total_pages:null,
+            searchMovies:{}
         }
     },
     watch: {
@@ -77,7 +79,8 @@ Vue.component('movie-app', {
     },
     components: {
         MovieComp,
-        MovieFav
+        MovieFav,
+        SearchComponent
     },    
     beforeMount() {
         
