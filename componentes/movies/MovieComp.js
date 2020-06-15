@@ -27,7 +27,7 @@ let MovieComp = {
     },
     template: `
         <div :id="id | formatId" class="card" :class="{}">                                    
-            <img :src="cover" class="card-img-top"/>
+            <img :src="cover | coverURL" class="card-img-top"/>
             <div class="card-body">
             <h5 class="card-title">{{title | uppercase}}</h5>
             <p class="card-text">{{synopsis | reduce}}</p>             

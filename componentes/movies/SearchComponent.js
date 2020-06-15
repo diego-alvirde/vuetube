@@ -4,7 +4,7 @@ let SearchComponent = {
             <form @submit.prevent="search" class="form-inline md-form form-sm mt-0">
                 <div class="input-group md-form form-sm form-2 pl-0 w-100">
                     <div v-show="query" class="input-group-append">
-                        <span class="btn btn-danger">
+                        <span @click="alerta()" class="btn btn-danger">
                             <i class="fas fa-times"></i>
                         </span>
                     </div>
@@ -23,17 +23,27 @@ let SearchComponent = {
     `,
     data () {
         return {
-            query: ''
+            query: '',
+            page:1
         }
     },
     methods: {
         search() {
-            let URL = `${BASE_URL}search/movie?api_key=${API_KEY}&language=es-MX&query=${this.query}`
+            let URL = `${BASE_URL}search/movie?api_key=${API_KEY}&language=es-MX&query=${this.query}&page=${this.page}`
             fetch(URL)
             .then(res => res.json())
             .then(data => {
                 this.$emit('input', data)
             })
+        },
+        cambia(valor){            
+            this.page = valor            
+            this.search()
+        },
+        alerta(){
+            this.query = ''
+            this.$parent.searchMovies = {}
+            console.log("alerta")
         }
     },
 }

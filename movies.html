@@ -107,6 +107,13 @@
     <script src="./componentes/movies/SearchComponent.js"></script>
     <script src="./componentes/movies/index.js"></script>
     <script>
+        Vue.mixin({
+            filters:{
+                coverURL(str) {
+                    return `https://image.tmdb.org/t/p/w185_and_h278_bestv2${str}`
+                }
+            }
+        })
         let app = new Vue({
             el: "#app",
             data () {
